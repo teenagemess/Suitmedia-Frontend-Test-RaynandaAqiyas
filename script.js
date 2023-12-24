@@ -1,7 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
     var prevScrollpos = window.pageYOffset;
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', function () {
+        var currentScrollPos = window.pageYOffset;
+
+        if (prevScrollpos > currentScrollPos) {
+            // Scrolling up
+            document.querySelector('.scrolling-navbar').classList.remove('hidden');
+        } else {
+            // Scrolling down
+            document.querySelector('.scrolling-navbar').classList.add('hidden');
+        }
+
+        prevScrollpos = currentScrollPos;
+    });
 
     var selectElement = document.getElementById('floatingSelect');
     selectElement.addEventListener('change', handleSelectChange);
